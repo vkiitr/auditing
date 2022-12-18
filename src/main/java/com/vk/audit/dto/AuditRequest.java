@@ -11,6 +11,7 @@ import com.vk.audit.enums.AuditOperation;
 	{
 	  "userName": "Vikas",
 	  "serviceName": "security-service",
+	  "message": "Configuration has been modified successfully",
 	  "category": "CONFIGURATION",
 	  "operation": "MODIFY",
 	  "auditTime": 1671354129,
@@ -40,6 +41,8 @@ public class AuditRequest {
 	private String userName;
 	
 	private String serviceName;
+	
+	private String message;
 
 	private AuditCategory category;
 	
@@ -67,6 +70,14 @@ public class AuditRequest {
 
 	public void setServiceName(String serviceName) {
 		this.serviceName = serviceName;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public AuditCategory getCategory() {
@@ -103,8 +114,9 @@ public class AuditRequest {
 
 	@Override
 	public String toString() {
-		return "AuditRequest [userName=" + userName + ", serviceName=" + serviceName + ", category=" + category
-				+ ", operation=" + operation + ", auditAttributes=" + auditAttributes + "]";
+		return "AuditRequest [userName=" + userName + ", serviceName=" + serviceName + ", message=" + message
+				+ ", category=" + category + ", operation=" + operation + ", auditAttributes=" + auditAttributes
+				+ ", auditTime=" + auditTime + "]";
 	}
 
 }

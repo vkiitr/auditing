@@ -34,7 +34,10 @@ public class AuditRecord {
 
 	@Column(name = "ServiceName")
 	private String serviceName;
-	
+
+	@Column(name = "Message")
+	private String message;
+
 	@Column(name = "Category")
 	@Convert(converter = AuditCategory.AuditCategoryConverter.class)
 	@JsonInclude(JsonInclude.Include.NON_NULL)
@@ -49,7 +52,7 @@ public class AuditRecord {
 	@Convert(converter = AuditRecordDetailConverter.class)
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private List<AuditRecordDetail> auditAttributes;
-	
+
 	@Column(name = "AuditTimestamp", insertable = true, updatable = false)
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private Long auditTime;
@@ -57,10 +60,6 @@ public class AuditRecord {
 	@Column(name = "CreatedDateTime", insertable = true, updatable = false)
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private Long createTime;
-
-	@Column(name = "LastUpdatedDateTime", insertable = true, updatable = false)
-	@JsonInclude(JsonInclude.Include.NON_NULL)
-	private Long updatedTime;
 
 	public AuditRecord() {
 		// TODO Auto-generated constructor stub
@@ -72,6 +71,7 @@ public class AuditRecord {
 		this.category = auditData.getCategory();
 		this.operation = auditData.getOperation();
 		this.serviceName = auditData.getServiceName();
+		this.message = auditData.getMessage();
 		this.auditTime = auditData.getAuditTime();
 		this.auditAttributes = auditData.getAuditAttributes();
 	}
@@ -90,6 +90,14 @@ public class AuditRecord {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public String getServiceName() {
@@ -140,19 +148,11 @@ public class AuditRecord {
 		this.createTime = createTime;
 	}
 
-	public Long getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(Long updatedTime) {
-		this.updatedTime = updatedTime;
-	}
-
 	@Override
 	public String toString() {
-		return "AuditRecord [recordId=" + recordId + ", userName=" + userName + ", category=" + category
-				+ ", operation=" + operation + ", details=" + ", auditTime=" + auditTime + ", createTime=" + createTime
-				+ ", updatedTime=" + updatedTime + "]";
+		return "AuditRecord [recordId=" + recordId + ", userName=" + userName + ", serviceName=" + serviceName
+				+ ", message=" + message + ", category=" + category + ", operation=" + operation + ", auditAttributes="
+				+ auditAttributes + ", auditTime=" + auditTime + ", createTime=" + createTime + "]";
 	}
 
 }
