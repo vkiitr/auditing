@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.vk.audit.dao.AuditRepository;
 import com.vk.audit.dto.AuditRequest;
 import com.vk.audit.entities.AuditRecord;
+import com.vk.audit.exceptions.DBException;
 
 @Service
 public class AuditService implements IAuditService {
@@ -21,10 +22,28 @@ public class AuditService implements IAuditService {
 	}
 
 	@Override
-	public AuditRecord saveRecord(AuditRequest auditData) {
-		AuditRecord record = new AuditRecord(auditData);
-		return this.auditRepository.save(record);
+	public AuditRecord saveRecord(AuditRequest auditData) throws IllegalArgumentException {
+		try {
+			AuditRecord savedRecord = this.auditRepository.save(this.convertToAuditRecordEntity(auditData));
+			return savedRecord;
+		} catch (Exception e) {
+			throw new DBException(e.getMessage());
+		}
+		
 	}
+	
+	private AuditRecord convertToAuditRecordEntity(AuditRequest auditData) {
+		AuditRecord record = new AuditRecord();
+		record.setUserName(auditData.getUserName());
+		record.setCategory(auditData.getCategory());
+		record.setOperation(auditData.getOperation());
+		record.setServiceName(auditData.getServiceName());
+		record.setMessage(auditData.getMessage());
+		record.setAuditTime(auditData.getAuditTime());
+		record.setAuditAttributes(auditData.getAuditAttributes());
+		record.setCreateTime(System.currentTimeMillis());
+        return record;
+}
 
 	@Override
 	public List<AuditRecord> fetchAllRecords(Boolean isAdmin, String userName) {

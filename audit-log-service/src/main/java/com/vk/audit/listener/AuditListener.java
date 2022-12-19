@@ -32,7 +32,7 @@ public class AuditListener implements RabbitListenerConfigurer {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			AuditRequest auditData = mapper.readValue(auditDataJson, AuditRequest.class);
-			logger.info("\nRecieved inside AuditListener: " + auditData);
+			// logger.info("\nRecieved inside AuditListener: " + auditData);
 			this.auditService.saveRecord(auditData);
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block

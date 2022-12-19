@@ -1,5 +1,7 @@
 package com.vk.audit.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vk.audit.dto.AuditResponse;
 import com.vk.audit.dto.RecordCount;
+import com.vk.audit.entities.AuditRecord;
 import com.vk.audit.service.IAuditService;
 
 @RestController
@@ -35,6 +38,7 @@ public class AuditController {
 	public AuditResponse getAllRecords(Authentication authentication) {
 		Boolean isAdmin = authentication.getAuthorities().toString().contains("[ADMIN]");
 		String userName = authentication.getName();
-		return new AuditResponse(this.auditService.fetchAllRecords(isAdmin, userName));
+		List<AuditRecord> records = this.auditService.fetchAllRecords(isAdmin, userName);
+		return new AuditResponse(records);
 	}
 }

@@ -50,9 +50,13 @@ public class SecurityConfiguration {
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/audit").hasAuthority("ADMIN").antMatchers("/audit/*")
-				.hasAnyAuthority("NONADMIN", "ADMIN").antMatchers("/", "/**", "/h2/**").permitAll().and().csrf()
-				.disable().headers().frameOptions().disable().and().formLogin();
+		http.authorizeRequests()
+			.antMatchers("/audit").hasAnyAuthority("NONADMIN", "ADMIN")
+			.antMatchers("/audit/*").hasAnyAuthority("NONADMIN", "ADMIN")
+			.antMatchers("/", "/**", "/h2/**").permitAll()
+			.and().csrf().disable()
+			.headers().frameOptions().disable()
+			.and().formLogin();
 
 		return http.build();
 

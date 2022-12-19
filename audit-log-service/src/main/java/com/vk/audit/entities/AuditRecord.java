@@ -12,10 +12,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.vk.audit.dto.AuditRecordDetail;
 import com.vk.audit.dto.AuditRecordDetailConverter;
-import com.vk.audit.dto.AuditRequest;
 import com.vk.audit.enums.AuditCategory;
 import com.vk.audit.enums.AuditOperation;
 
@@ -27,6 +27,7 @@ public class AuditRecord {
 	@Id
 	@Column(name = "RecordId", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private Long recordId;
 
 	@Column(name = "UserName")
@@ -63,17 +64,6 @@ public class AuditRecord {
 
 	public AuditRecord() {
 		// TODO Auto-generated constructor stub
-	}
-
-	// TODO replace this logic with builder pattern
-	public AuditRecord(AuditRequest auditData) {
-		this.userName = auditData.getUserName();
-		this.category = auditData.getCategory();
-		this.operation = auditData.getOperation();
-		this.serviceName = auditData.getServiceName();
-		this.message = auditData.getMessage();
-		this.auditTime = auditData.getAuditTime();
-		this.auditAttributes = auditData.getAuditAttributes();
 	}
 
 	public Long getRecordId() {

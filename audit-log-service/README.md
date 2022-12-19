@@ -15,14 +15,10 @@ default port - 15672
 
 ## TODO
 
-	- convert it to listener of MQ - Done
-	- RBAC handling ADMIN vs NONADMIN
 	- Handling of log rotation with configurable window, archive kind of support or soft delete for some time
-	- input validation, Error/Exception handling
-	- date and time handling
 	- pagination and format of request and response
 	- logging with proper logging level
-	- packaging
+	- packaging script
 	- 
 	
     
