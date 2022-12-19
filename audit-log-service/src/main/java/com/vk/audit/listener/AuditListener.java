@@ -1,4 +1,4 @@
-package com.vk.audit.service;
+package com.vk.audit.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vk.audit.dto.AuditRequest;
+import com.vk.audit.service.IAuditService;
 
 @Component
 public class AuditListener implements RabbitListenerConfigurer {
