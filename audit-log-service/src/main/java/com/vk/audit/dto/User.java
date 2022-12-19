@@ -1,40 +1,22 @@
-package com.vk.audit.entities;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+package com.vk.audit.dto;
 
-@Entity
-@Table(name =  "USERS")
 public class User {
 	
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "role")
-	private String role;
+	private String password;
 	
-	public String getRole() {
-		return role;
+	private String role;
+
+	public User() {
+		super();
 	}
 
-	public void setRole(String role) {
+	public User(String name, String password, String role) {
+		super();
+		this.name = name;
+		this.password = password;
 		this.role = role;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -45,9 +27,21 @@ public class User {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", role=" + role + "]";
+	public String getPassword() {
+		return password;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	
 }

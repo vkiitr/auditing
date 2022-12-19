@@ -1,0 +1,27 @@
+[
+  {
+    "name": "admin",
+    "password": "password",
+    "role": "ADMIN"
+  },
+  {
+    "name": "vikas",
+    "password": "password",
+    "role": "ADMIN"
+  },
+  {
+    "name": "vk",
+    "password": "password",
+    "role": "NONADMIN"
+  },
+  {
+    "name": "pk",
+    "password": "password",
+    "role": "NONADMIN"
+  },
+  {
+    "name": "sk",
+    "password": "password",
+    "role": "NONADMIN"
+  }
+]
