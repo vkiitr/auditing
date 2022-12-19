@@ -80,11 +80,9 @@ public enum AuditOperation {
 
 		@Override
 		public AuditOperation convertToEntityAttribute(Integer dbData) {
-			// TODO Auto-generated method stub
 			try {
 				return AuditOperation.fromId(dbData);
 			} catch (EnumConstantNotPresentException e) {
-				// TODO Auto-generated catch block
 				return UNKNOWN_OPERATION;
 			}
 		}

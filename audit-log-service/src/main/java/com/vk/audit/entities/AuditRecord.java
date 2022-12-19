@@ -63,7 +63,6 @@ public class AuditRecord {
 	private Long createTime;
 
 	public AuditRecord() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Long getRecordId() {

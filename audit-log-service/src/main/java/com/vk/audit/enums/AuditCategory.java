@@ -74,11 +74,9 @@ public enum AuditCategory {
 
 		@Override
 		public AuditCategory convertToEntityAttribute(Integer dbData) {
-			// TODO Auto-generated method stub
 			try {
 				return AuditCategory.fromId(dbData);
 			} catch (EnumConstantNotPresentException e) {
-				// TODO Auto-generated catch block
 				return UNKNOWN_CATEGORY;
 			}
 		}

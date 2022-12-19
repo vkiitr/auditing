@@ -1,7 +1,5 @@
 package com.vk.audit.listener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
@@ -17,7 +15,7 @@ import com.vk.audit.service.IAuditService;
 @Component
 public class AuditListener implements RabbitListenerConfigurer {
 
-	private static final Logger logger = LoggerFactory.getLogger(AuditListener.class);
+	// private static final Logger logger = LoggerFactory.getLogger(AuditListener.class);
 
 	@Autowired
 	public IAuditService auditService;
@@ -35,10 +33,10 @@ public class AuditListener implements RabbitListenerConfigurer {
 			// logger.info("\nRecieved inside AuditListener: " + auditData);
 			this.auditService.saveRecord(auditData);
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
+			// add logger.debug
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// add logger.debug
 			e.printStackTrace();
 		}
 		

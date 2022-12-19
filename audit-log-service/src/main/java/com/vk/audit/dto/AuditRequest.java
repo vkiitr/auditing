@@ -2,7 +2,6 @@ package com.vk.audit.dto;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vk.audit.enums.AuditCategory;
 import com.vk.audit.enums.AuditOperation;
 
@@ -53,11 +52,9 @@ public class AuditRequest {
 	
 	private Long auditTime;
 	
-	@JsonIgnore
 	private Long createTime;
 
 	public AuditRequest() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getUserName() {

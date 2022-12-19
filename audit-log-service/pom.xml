@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.vk</groupId>
 	<artifactId>audit-log-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>war</packaging>
-	<name>audit-11</name>
+	<name>audit-log-service</name>
 	<description>audit service project</description>
 	<properties>
 		<java.version>11</java.version>

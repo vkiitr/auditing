@@ -1,7 +1,5 @@
 package com.vk.audit.service;
 
-import java.util.List;
-
 import com.vk.audit.dto.AuditRequest;
 import com.vk.audit.dto.AuditResponse;
 import com.vk.audit.entities.AuditRecord;

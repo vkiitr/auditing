@@ -53,6 +53,8 @@ public class SecurityConfiguration {
 		http.authorizeRequests()
 			.antMatchers("/audits").hasAnyAuthority("NONADMIN", "ADMIN")
 			.antMatchers("/audits/*").hasAnyAuthority("NONADMIN", "ADMIN")
+			.antMatchers("/api/audits").hasAnyAuthority("NONADMIN", "ADMIN")
+			.antMatchers("/api/audits/*").hasAnyAuthority("NONADMIN", "ADMIN")
 			.antMatchers("/", "/**", "/h2/**").permitAll()
 			.and().csrf().disable()
 			.headers().frameOptions().disable()
@@ -71,13 +73,12 @@ public class SecurityConfiguration {
 			});
 			return userList;
 		} catch (StreamReadException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (DatabindException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
