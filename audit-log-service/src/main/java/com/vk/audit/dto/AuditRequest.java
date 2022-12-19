@@ -2,6 +2,7 @@ package com.vk.audit.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vk.audit.enums.AuditCategory;
 import com.vk.audit.enums.AuditOperation;
 
@@ -51,6 +52,9 @@ public class AuditRequest {
 	private List<AuditRecordDetail> auditAttributes;
 	
 	private Long auditTime;
+	
+	@JsonIgnore
+	private Long createTime;
 
 	public AuditRequest() {
 		// TODO Auto-generated constructor stub
@@ -112,6 +116,14 @@ public class AuditRequest {
 		this.auditTime = auditTime;
 	}
 
+	public Long getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Long createTime) {
+		this.createTime = createTime;
+	}
+	
 	@Override
 	public String toString() {
 		return "AuditRequest [userName=" + userName + ", serviceName=" + serviceName + ", message=" + message

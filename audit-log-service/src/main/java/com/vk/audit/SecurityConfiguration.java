@@ -51,8 +51,8 @@ public class SecurityConfiguration {
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-			.antMatchers("/audit").hasAnyAuthority("NONADMIN", "ADMIN")
-			.antMatchers("/audit/*").hasAnyAuthority("NONADMIN", "ADMIN")
+			.antMatchers("/audits").hasAnyAuthority("NONADMIN", "ADMIN")
+			.antMatchers("/audits/*").hasAnyAuthority("NONADMIN", "ADMIN")
 			.antMatchers("/", "/**", "/h2/**").permitAll()
 			.and().csrf().disable()
 			.headers().frameOptions().disable()

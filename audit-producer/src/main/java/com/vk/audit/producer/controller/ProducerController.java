@@ -11,7 +11,7 @@ import com.vk.audit.dto.AuditRequest;
 import com.vk.audit.producer.service.IMQSenderService;
 
 @RestController
-@RequestMapping(value = "/audit/")
+@RequestMapping(value = "/audits/")
 public class ProducerController {
 
 	private IMQSenderService mqSender;
