@@ -2,10 +2,13 @@
 
 This is a spring boot based audit log service. It uses h2 in memory database. Schema for audit table can be found at `auditing\audit-log-service\src\main\resources\schema.sql`
 
-Working function:
-	- Exposes one GET API (/audits) that returns all records as per logged-in user's role. APi has pagination and sorting support.
-	- Listen on locally installed rabbitmq and receive audit record message on port 5672 with guest user. all configuration can be modified from `auditing\audit-log-service\src\main\resources\application.properties`
-	- Supportd memory user authentication with ADMIN and NONADMIN role. (user and role information can be found below in the file)
+Working features:
+
+- Exposes one GET API (/audits) that returns all records as per logged-in user's role. APi has pagination and sorting support.
+
+- Listen on locally installed rabbitmq and receive audit record message on port 5672 with guest user. all configuration can be modified from `auditing\audit-log-service\src\main\resources\application.properties`
+
+- Supportd memory user authentication with ADMIN and NONADMIN role. (user and role information can be found below in the file)
 	
 	
 # Technical support instructions
@@ -13,19 +16,28 @@ Working function:
 ## Packaging the war
 
 - 	Clone the repo
+
 - 	Install maven [Click here to download maven](https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip)
 
 - 	run `mvn clean package` from `auditing\audit-log-service` to make war file.
 
 -	war can be found `auditing\audit-log-service\target with name`  `audit-log-service-0.0.1.war`
 
+## Prerequisite before deploying a war
+
+- rabbit mq should be installed on system and should listen on port 5672
+
 ## Deployment of war
 
 -	Download Apache Tomcat server 9 and above (Should be compatible with Java 11)
+
 -   copy the war to `{tomcat_dir}/webapps dir` and can rename it to `api.war`
+
 -   Open tomcat's `{tomcat_dir}/conf/server.xml` and add following line inside <Host> tag in that file
 	`<Context path="" docBase="api"></Context>`
-- 	run `{tomcat_dir}/bin/catalina.bat` or `catalina.sh` start
+	
+- 	run `{tomcat_dir}/bin/catalina.bat` start or `{tomcat_dir}/bin/catalina.sh` start
+
 -   Now service can be accessed via link `http://<host_name>:<port>/api/audits`
 
 ## Sample API once we have audit record in DB
@@ -89,6 +101,7 @@ user name = h2admin and password blank
 		- HATEOAS and filter support
 		- Added Exception handling infra and for testing raised one exception but there are many points where exception can be raised and handled.
 		- Added logging at few points, but many more points are pending.
+
 
 
 Disclaimer: The high level structure of this spring boot project has been generated via `https://start.spring.io/`
