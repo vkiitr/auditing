@@ -4,11 +4,11 @@ This is a spring boot based audit log service. It uses h2 in memory database. Sc
 
 Working features:
 
-- Exposes one GET API (/audits) that returns all records as per logged-in user's role. APi has pagination and sorting support.
+- Exposes a GET API (/audits) that returns all records as per logged-in user's role. APi has pagination and sorting support.
 
 - Listen on locally installed rabbitmq and receive audit record message on port 5672 with guest user. all configuration can be modified from `auditing\audit-log-service\src\main\resources\application.properties`
 
-- Supportd memory user authentication with ADMIN and NONADMIN role. (user and role information can be found below in the file)
+- Support in memory user authentication with ADMIN and NONADMIN role. (user and role information can be found below in the file)
 	
 	
 # Technical support instructions
@@ -59,33 +59,33 @@ http://localhost:8080/api/audits?pageSize=5&pageNo=1&sortBy=userName&sortDir=asc
 Information of users can be find in the `user.json` file in source code at `auditing\audit-log-service\src\main\resources\static` and more users with their role can be added in json and service restart will be required to make the new user effective.
 
 ```
-		[
-		  {
-		    "name": "admin",
-		    "password": "password",
-		    "role": "ADMIN"
-		  },
-		  {
-		    "name": "vikas",
-		    "password": "password",
-		    "role": "ADMIN"
-		  },
-		  {
-		    "name": "vk",
-		    "password": "password",
-		    "role": "NONADMIN"
-		  },
-		  {
-		    "name": "pk",
-		    "password": "password",
-		    "role": "NONADMIN"
-		  },
-		  {
-		    "name": "sk",
-		    "password": "password",
-		    "role": "NONADMIN"
-		  }
-		]
+[
+  {
+    "name": "admin",
+    "password": "password",
+    "role": "ADMIN"
+  },
+  {
+    "name": "vikas",
+    "password": "password",
+    "role": "ADMIN"
+  },
+  {
+    "name": "vk",
+    "password": "password",
+    "role": "NONADMIN"
+  },
+  {
+    "name": "pk",
+    "password": "password",
+    "role": "NONADMIN"
+  },
+  {
+    "name": "sk",
+    "password": "password",
+    "role": "NONADMIN"
+  }
+]
 ```
 
 ## DB access
@@ -99,6 +99,7 @@ user name = h2admin and password blank
 	## Requirement side implementation is pending for Handling of log rotation with configurable window. (Design thoughts are covered in design doc)
 	## API implementation side:
 		- HATEOAS and filter support
+		- Localization support for audit messages.
 		- Added Exception handling infra and for testing raised one exception but there are many points where exception can be raised and handled.
 		- Added logging at few points, but many more points are pending.
 
@@ -110,34 +111,34 @@ user name = h2admin and password blank
 This project can be used to publish the audit message via following REST API. AuditProducerApplication has main method and can be run as server.
  
 ```
-	HTTP method type: POST 
-	URI: http://{{host}}:{{publisher-port}}/audits/publish
-	Request body:
-	{
-	    "userName": "vk",
-	    "serviceName": "security-service",
-	    "message": "Configuration has been modified successfully",
-	    "category": "CONFIGURATION",
-	    "operation": "MODIFY",
-	    "auditTime": 1671354129,
-	    "auditAttributes": [
-	        {
-	            "name": "interval",
-	            "oldValue": "15",
-	            "newValue": "10"
-	        },
-	        {
-	            "name": "retention",
-	            "oldValue": "1 years",
-	            "newValue": "2 years"
-	        },
-	        {
-	            "name": "hostName",
-	            "oldValue": "abc.com",
-	            "newValue": "xyz.com"
-	        }
-	    ]
-	}
+HTTP method type: POST 
+URI: http://{{host}}:{{publisher-port}}/audits/publish
+Request body:
+{
+    "userName": "vk",
+    "serviceName": "security-service",
+    "message": "Configuration has been modified successfully",
+    "category": "CONFIGURATION",
+    "operation": "MODIFY",
+    "auditTime": 1671354129,
+    "auditAttributes": [
+        {
+            "name": "interval",
+            "oldValue": "15",
+            "newValue": "10"
+        },
+        {
+            "name": "retention",
+            "oldValue": "1 years",
+            "newValue": "2 years"
+        },
+        {
+            "name": "hostName",
+            "oldValue": "abc.com",
+            "newValue": "xyz.com"
+        }
+    ]
+}
 *** userName and service name can be fetch from request context.
 ```
 
