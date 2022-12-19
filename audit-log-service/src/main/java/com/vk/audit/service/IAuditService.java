@@ -11,5 +11,5 @@ public interface IAuditService {
 
 	public AuditRecord saveRecord(AuditRequest auditData);
 
-	public List<AuditRecord> fetchAllRecords();
+	public List<AuditRecord> fetchAllRecords(Boolean isAdmin, String userName);
 }

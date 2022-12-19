@@ -1,7 +1,5 @@
 package com.vk.audit.dto;
 
-import java.io.Serializable;
-
 public class AuditRecordDetail {
 	public String name;
 	public String oldValue;

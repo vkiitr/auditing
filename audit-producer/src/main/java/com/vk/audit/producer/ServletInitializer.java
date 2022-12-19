@@ -1,4 +1,4 @@
-package com.vk.audit.producer.config;
+package com.vk.audit.producer;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

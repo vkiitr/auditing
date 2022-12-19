@@ -22,17 +22,21 @@ public class AuditService implements IAuditService {
 
 	@Override
 	public AuditRecord saveRecord(AuditRequest auditData) {
-		// TODO Auto-generated method stub
 		AuditRecord record = new AuditRecord(auditData);
 		return this.auditRepository.save(record);
 	}
 
 	@Override
-	public List<AuditRecord> fetchAllRecords() {
-		// TODO Auto-generated method stub
-		Iterable<AuditRecord> records = this.auditRepository.findAll();
+	public List<AuditRecord> fetchAllRecords(Boolean isAdmin, String userName) {
 		List<AuditRecord> result = new ArrayList<AuditRecord>();
-		records.forEach(result::add);
+		if (isAdmin) {
+			Iterable<AuditRecord> records = this.auditRepository.findAll();
+			records.forEach(result::add);
+		} else {
+			Iterable<AuditRecord> records = this.auditRepository.findByUserNameIgnoreCase(userName);
+			records.forEach(result::add);
+		}
+		
 		return result;
 	}
 }

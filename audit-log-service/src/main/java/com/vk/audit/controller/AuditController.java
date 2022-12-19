@@ -2,6 +2,7 @@ package com.vk.audit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,8 +32,9 @@ public class AuditController {
 //	}
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/audit")
-	public AuditResponse getAllRecords() {
-		
-		return new AuditResponse(this.auditService.fetchAllRecords());
+	public AuditResponse getAllRecords(Authentication authentication) {
+		Boolean isAdmin = authentication.getAuthorities().toString().contains("[ADMIN]");
+		String userName = authentication.getName();
+		return new AuditResponse(this.auditService.fetchAllRecords(isAdmin, userName));
 	}
 }

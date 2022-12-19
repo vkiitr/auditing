@@ -6,4 +6,5 @@ import com.vk.audit.entities.AuditRecord;
 
 public interface AuditRepository extends CrudRepository<AuditRecord, Integer> {
 
+	public Iterable<AuditRecord> findByUserNameIgnoreCase(String userName);
 }
